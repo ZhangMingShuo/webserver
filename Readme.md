@@ -20,3 +20,12 @@ fn main() -> std::io::Result<()> {
 }
 
 ```
+
+## 修改handle_client函数实现读取stream并输出stream到控制台
+```rs
+fn handle_client(mut stream: TcpStream) {
+    let mut buffer = [0; 512];
+    stream.read(&mut buffer).unwrap();//将stream内容读取到buffer中
+    println!("Request:{}",String::from_utf8_lossy(&buffer[..]))//调用from_utf8_lossy方法将buffer转为string并打印
+}
+```
